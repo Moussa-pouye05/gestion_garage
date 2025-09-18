@@ -1,0 +1,174 @@
+.menu{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.search{
+    padding:20px;
+    
+}
+.search input{
+width:500px;
+padding:10px;
+border-radius:10px;
+outline:none;
+border:1px solid rgba(0,0,0,0.2);
+}
+.addEmploye{
+    padding:10px;
+    background-color:blue;
+    margin-right:10px;
+    border-radius:10px;
+}
+.addEmploye button{
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    background-color:blue;
+    border:none;
+    cursor:pointer;
+}
+.addEmploye i{
+    font-size:16px;
+    margin-right:10px;
+}
+section h2{
+    color:#3498db;
+    text-align:center;
+    padding:10px;
+}
+section{
+    overflow:auto;
+}
+form{
+    width: 30%;
+    border:1px solid rgba(0,0,0,0.2);
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.inputBox{
+    padding:10px;
+    
+}
+.input{
+    border: 1px solid rgba(0,0,0,0.2);
+    padding:10px;
+    border-radius: 10px;
+}
+.input input{
+    outline: none;
+    border:none;
+    width: 90%;
+}
+.btn{
+    width:94%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    outline: none;
+    border:1px solid rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.2);
+}
+select{
+    width:94%;
+    margin:10px;
+    padding: 10px;
+    outline:none;
+    border-radius: 10px;
+}
+.role{
+    margin-left: 10px;
+}
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.521);
+    display: none;
+}
+.active{
+    display: block;
+    transition: all 0.3s ease-in;
+}
+form .fa-xmark{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 18px;
+}
+table{
+    
+    width: 96%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin: auto;
+}
+tr th{
+    text-align: left;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+}
+tr td{
+    padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.btn-edit, .btn-delete{
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+    border:none;
+    cursor: pointer;
+}
+/* .btn-edit{
+    background-color: orange;
+} */
+.btn-edit {
+    text-decoration:none;
+    color:orange;
+    font-weight:bold;
+}
+.btn-delete{
+    text-decoration:none;
+    color:red;
+    font-weight:bold;
+}
+/* .btn-delete{
+    background-color: red;
+} */
+.btn-edit i, .btn-delete i{
+    margin-right: 5px;
+}
+@media screen and (max-width:600px){
+    .search input{
+        width: 200px;
+    }
+    form{
+        width: 80%;
+    }
+    .inputBox{
+        padding:5px;
+    }
+    .input input{
+        width: 80%;
+    }
+    .btn, select{
+        width: 88%;
+    }
+    select option{
+       white-space: nowrap;
+         overflow: hidden;
+            text-overflow: ellipsis;
+    }
+    
+}

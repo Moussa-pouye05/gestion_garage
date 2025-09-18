@@ -1,0 +1,36 @@
+🚗 Plan d’un Projet : Application de Gestion de Garage
+🔹 1. Définir les fonctionnalités
+
+Ton garage doit permettre de gérer :
+
+Clients
+
+Ajouter / modifier / supprimer un client
+
+Voir la liste des clients
+
+Véhicules
+
+Chaque véhicule appartient à un client
+
+Infos : immatriculation, marque, modèle, année
+
+Réparations / Interventions
+
+Ajouter une réparation pour un véhicule (date, description, coût, pièces utilisées)
+
+Modifier / supprimer une réparation
+
+Voir l’historique des réparations d’un véhicule
+
+Facturation
+
+Générer une facture pour une réparation
+
+Voir le montant total payé par un client
+
+Authentification
+
+Admin (gère tout)
+
+Employé (peut seulement ajouter/modifier des réparations et consulter les clients)

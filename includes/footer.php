@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./images/logo.jpg">
+    <link rel="stylesheet" href="./styles/connexion.css">
+    <link rel="stylesheet" href="./../styles/dashboardAdmin.css">
+    <link rel="stylesheet" href="./../styles/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Gestion garage</title>
+</head>
+<body>
+    <footer class="footer">
+        <p>&copy; 2025 - Sunu Garage</p>
+    </footer>
+</body>
+</html>
