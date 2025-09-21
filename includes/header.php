@@ -11,6 +11,8 @@
     <title>Gestion garage</title>
 </head>
 <body>
-    
+    <header>
+    <h1>Sunu Garage</h1>
+    <header>
 </body>
 </html>

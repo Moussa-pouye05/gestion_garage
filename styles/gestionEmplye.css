@@ -15,7 +15,7 @@ outline:none;
 border:1px solid rgba(0,0,0,0.2);
 }
 .addEmploye{
-    padding:10px;
+    padding:5px;
     background-color:blue;
     margin-right:10px;
     border-radius:10px;
@@ -30,7 +30,7 @@ border:1px solid rgba(0,0,0,0.2);
 }
 .addEmploye i{
     font-size:16px;
-    margin-right:10px;
+    margin-right:5px;
 }
 section h2{
     color:#3498db;
@@ -149,7 +149,7 @@ tr td{
 .btn-edit i, .btn-delete i{
     margin-right: 5px;
 }
-@media screen and (max-width:600px){
+@media(max-width:1024px){
     .search input{
         width: 200px;
     }
@@ -170,5 +170,24 @@ tr td{
          overflow: hidden;
             text-overflow: ellipsis;
     }
-    
+    .addEmploye {
+        font-size: 10px;
+        min-width: 25%;
+    }
+    .addEmploye button{
+        text-align: center;
+    }
+}
+@media (max-width:600px){
+
+    table{
+     width: 100%;
+     margin: 5px;
+    }
+    tr th{
+        padding: 5px;
+    }
+    tr td{
+        padding: 5px;
+    }
 }

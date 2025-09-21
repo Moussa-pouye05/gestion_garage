@@ -5,7 +5,7 @@ require_once __DIR__ . '/../config/mysql.php';
 $search = isset($_GET['q']) ? $_GET['q'] : "";
 
 // Requête SQL
-$sql = "SELECT * FROM utilisateurs WHERE nom LIKE :search OR email LIKE :search AND role='employe'";
+$sql = "SELECT * FROM utilisateurs WHERE nom LIKE :search AND role='employe'";
 $stmt = $con->prepare($sql);
 $stmt->execute(['search' => "%" . $search . "%"]);
 $employes = $stmt->fetchAll(PDO::FETCH_ASSOC);

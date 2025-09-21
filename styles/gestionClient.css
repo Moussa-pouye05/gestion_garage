@@ -1,0 +1,196 @@
+.bloc-haut{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:0 25px;
+}
+.bloc-haut .search{
+    padding: 5px 10px;
+    border:1px solid #ccc;
+    border-radius: 10px;
+}
+.bloc-haut .search input{
+    border:none;
+    outline:none;
+    padding:5px;
+}
+.bloc-haut .search i{
+    color:#ccc;
+}
+.bloc-haut .search input{
+    background-color: whitesmoke;
+}
+.bloc-haut .addClient button{
+    background-color: rgba(0, 153, 255, 0.493);
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.bloc-haut .addClient button i{
+    margin-right: 5px;
+}
+.bloc-table{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin:20px 25px 3px 25px;
+    padding:10px;
+    background-color: rgba(0, 153, 255, 0.493);
+    color:white;
+    border-radius:10px;
+    font-weight: bold;
+    overflow: auto;
+}
+.bloc-ligne{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin:0 25px 8px 25px;
+    padding:10px;
+    background-color: #fff;
+    color:rgba(0,0,0,0.6);
+    border-radius:10px;
+    font-weight: bold;
+    gap:15px;
+    
+}
+.bloc-ligne .row{
+    text-align: center;
+    padding:5px;
+}
+
+.bloc-ligne .action{
+    display: flex;
+    gap: 10px;
+}
+.bloc-ligne button{
+    border:none;
+}
+.bloc-ligne .action .edit{
+    background-color: rgba(0, 153, 255, 0.493);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.bloc-ligne .action .delete{
+    background-color: rgba(255, 0, 0, 0.493);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.bloc-ligne .action .details{
+    background-color: rgba(0, 255, 0, 0.493);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.btn{
+    background-color: rgba(0, 153, 255, 0.493);
+}
+.card-day{
+    width: 25%;
+    height: 15vh;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color:#2ecc71;
+    border-radius: 10px;
+}
+.card-day .icon-day{
+    font-size: 23px;
+    color: #2ecc71;
+    background-color:white ;
+    border-radius: 50%;
+    padding: 5px 12px 5px 12px;
+}
+.number-day .nombre{
+    font-size: 22px;
+    font-weight: bold;
+    color: blue;
+}
+.number-day p{
+    font-size: 14px;
+    color: #555;
+}
+.cardClient{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+   
+}
+.card-month{
+    width: 25%;
+    height: 15vh;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color:#2ecc71;
+    border-radius: 10px;
+    
+}
+.card-month .icon-month{
+    font-size: 23px;
+    color: #2ecc71;
+    background-color:white ;
+    border-radius: 50%;
+    padding: 5px 12px 5px 12px;
+}
+.number-month .nombre{
+    font-size: 22px;
+    font-weight: bold;
+    color: blue;
+}
+.number-month p{
+    font-size: 14px;
+    color: #555;
+}
+
+@media(max-width:1024px) {
+    .cardClient{
+        justify-content: center;
+        gap: 10px;
+    }
+    .card-day, .card-month{
+        width: 45%;
+        height: 12vh;
+        gap: 10px;
+    }
+    .bloc-haut .search{
+        width: 50%;
+        
+    }
+
+    }
+    .addClient button{
+        font-size: 12px;
+    }
+    @media(max-width:600px){
+        .bloc-table .nom, .telephone, .adresse{
+            font-size: 12px;
+        }
+        .bloc-ligne .nom, .telephone, .adresse{
+            font-size: 10px;
+        }
+        .bloc-ligne .action{
+            padding:1px;
+            font-size: 12px;
+        }
+        .bloc-ligne .edit{
+            padding: 1px;
+        }
+        .bloc-ligne .delete{
+            padding: 1px;
+        }
+        .bloc-ligne .details{
+            padding: 1px;
+        }
+    }

@@ -5,27 +5,32 @@
       require_once __DIR__ . '/../classes/employe.php';
       
 ?>
-
-
 <main>
 <header> 
-    <h1>Sunu Garage</h1>
+    <h2>Sunu Garage</h2>
     <div class="menuSide">
       <a onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></a>
     </div>
     <script>
+      //  nav.classList.toggle("actife");
       function toggleMenu(){
        let nav = document.getElementById("nav");
-       nav.classList.toggle("actife");
+      //  nav.style.width = "80%"
+       if(nav.style.width === "80%"){
+         nav.style.width = "0%"
+       }else{
+         nav.style.width = "80%"
+       }
 }
     </script>
  </header>
- <section>
+ <section class="section">
     <h2>Gestion des employés</h2>
     <div class="menu">
        <div class="search">
-        <input type="text" name="search" placeholder="Rechercher un employé" id="searchInput">
-        <div id="results"></div>
+        <input type="text" name="search" placeholder="Rechercher..." id="searchInput">
+        
+        <!-- <div id="results"></div> -->
          <p id="noResult" style="display:none; color:red; font-weight:bold;">
           Aucun employé trouvé
         </p>
@@ -57,7 +62,6 @@
        <div class="addEmploye"  >
          <button onclick="toggleForm()"><i class="fa-solid fa-plus"></i>Ajouter un employe</button>
        </div>
-
     </div>
     <?php
      $employe = new Employe($con);
@@ -149,7 +153,7 @@
                <option value="admin">admin</option>
                <option value="employe">employe</option>
             </select>
-            <button class="btn">Ajouter</button>
+            <button class="btn" style="background-color: rgba(0, 153, 255, 0.493);">Ajouter</button>
         </form>
     </div>
     
