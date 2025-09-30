@@ -1,0 +1,222 @@
+.car{
+    width: 20%;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #2ecc71;
+    border-radius: 10px;
+    padding-top: 5px;
+}
+.card-voiture{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 10px 15px;
+    gap: 10px;
+}
+.icon-car{
+    background-color: white;
+    padding: 5px 7px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #2ecc71;
+}
+.car .first{
+    padding: 5px 10px;
+}
+.car .three{
+    padding: 5px 12px;
+}
+.car .number{
+    font-size: 18px;
+    color: blue;
+}
+.car .text{
+    color: rgba(0, 0, 0, 0.644);
+    font-size: 16px;
+}
+.table-voiture{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.card-head{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    background-color: rgba(0, 153, 255, 0.493);
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.card-body{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    text-align: center;
+    
+}
+.ligne{
+    background-color: #e6f7ff;
+  padding: 10px 0;
+  border-radius: 10px;
+  margin: 2px 0;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.63);
+}
+.card-body .action .edit{
+    color: rgba(0, 153, 255, 0.493);
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.card-body .action .delete{
+    color: rgba(255, 0, 0, 0.493);
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.card-body .action .details{
+    color: rgba(0, 255, 0, 0.493);
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.addVehicule button{
+   position: relative;
+   margin: 10px;
+   border: none;
+   padding: 7px;
+   background-color: blue;
+   color: white;
+   border-radius: 10px;
+}
+.addVehicule .fa-plus{
+    margin-right: 5px;
+}
+.group input{
+    width: 100%;
+    padding: 7px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+
+}
+.group{
+    padding: 5px 10px;
+}
+.formulaire{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.678);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+     z-index: 1000;
+     display: none;
+}
+.formulaire form{
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%,-50%);
+    padding: 10px 0;
+   
+}
+.activeClient{
+    display: block;
+}
+.formulaire i{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.formulaire section{
+    width: 100%;
+}
+.searchVoiture input{
+  width: 90%;
+  border: none;
+  outline: none;
+  background-color: whitesmoke;
+}
+.searchVoiture{
+    width: 30%;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin:10px ;
+    
+}
+.textListe{
+    color: rgba(0, 153, 255, 0.493);
+    text-align: center;
+    font-size: 25px;
+    
+}
+@media(max-width:600px){
+    .card-voiture{
+        flex-wrap: wrap;
+        
+    }
+    .car{
+     width: 47%;
+     height: 15vh;
+     justify-content: center;
+     gap: 9px;
+    }
+    .car .text{
+font-size: 20px;
+padding-right: 10px;
+    }
+    .car .icon-car{
+        font-size: 30px;
+        margin-left: 15px;
+    }
+    .card-head{
+        width: 700px;
+    }
+    .card-body{
+        width: 700px;
+    }
+    .searchVoiture{
+        width: 90%;
+    }
+}
+@media(min-width:601px) and (max-width:1024px){
+    .car{
+        width: 47%;
+        grid-area: 10px;
+    }
+    .car .icon-car{
+        font-size: 40px;
+        margin:0 10px;
+
+    }
+    .car .text{
+        font-size: 25px;
+    }
+    .car .number{
+        font-size: 25px;
+    }
+    .card-body{
+        font-size: 20px;
+    }
+    .card-head{
+        font-size: 17px;
+    }
+    .searchVoiture{
+        width: 50%;
+    }
+    .searchVoiture input[placeholder]{
+        font-size: 20px;
+    }
+}

@@ -7,11 +7,9 @@ body{
     display:flex;
 }
 nav{
-    /* position: relative; */
+    z-index: 1000;
     width:20%;
     height:100vh;
-    /* padding:20px 0 0 20px; */
-    /* background-color:#2c3e50; */
     background:linear-gradient(180deg, #3498db, #2ecc71);
 }
 nav .navIcon{
@@ -108,7 +106,6 @@ section{
         left:0;
         width:0;
         transition: all 0.5s ease-in;
-        
     }
     main{
         width:100%;

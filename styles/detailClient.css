@@ -1,0 +1,147 @@
+.textClient{
+    font-size: 26px;
+    color: blue;
+    padding: 10px 0 10px 10px;
+}
+.textDetail{
+    font-size: 20px;
+    color: rgb(0, 217, 255);
+}
+.card-detail{
+    width: 27%;
+    height: 80vh;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-left: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+.card-detail-client{
+    display: flex;
+    justify-content: space-between;
+}
+.table-client{
+    width: 100%;
+}
+.nom-client{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+.nom-client i{
+    font-size: 60px;
+}
+.nom-client span{
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+ hr{
+    border:none;
+    height: 4px;
+    background-color: rgb(28, 28, 88);
+    width: 80%;
+    margin: auto;
+    position: relative;
+    left: 20px;
+    border-radius: 5px;
+}
+.info-client{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.telephone-client{
+    padding-left: 20px;
+    font-weight: bold;
+}
+.adresse-client{
+   padding-left: 20px; 
+   font-weight: bold;
+}
+.vehicule-client{
+    padding-left: 20px; 
+    font-weight: bold;
+    color: rgb(130, 185, 47);
+}
+.vehicule-client span, .vehicule-client i{
+    color: #0c0c0c;
+}
+.telephone-client i, 
+.adresse-client i, 
+.vehicule-client i{
+    margin-right: 10px;
+}
+.info-client i{
+    font-size: 17px;
+    
+}
+.bouton-contact{
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+}
+.bouton-contact button{
+    border: none;
+    padding: 8px 10px;
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+}
+.bouton-contact a{
+    text-decoration: none;
+    padding: 8px 10px;
+    color: white;
+    border-radius: 10px;
+    background-color: lightblue;
+}
+.arrow a{
+    /* margin: 10px 0 0 10px; */
+    text-decoration: none;
+    color: rgb(55, 0, 255);
+}
+.arrow{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+.arrow a:nth-child(2){
+    background-color: blue;
+    color: white;
+    padding: 3px;
+    border-radius: 10px;
+}
+.pagination {
+  margin-top: 15px;
+}
+.pagination a {
+  margin: 5px;
+  padding: 6px 12px;
+  background: #eee;
+  border-radius: 4px;
+  text-decoration: none;
+  color: black;
+}
+.pagination a:hover {
+  background: #ccc;
+}
+@media(max-width:600px){
+    .card-detail-client{
+      flex-direction: column;
+}
+.card-detail{
+    width: 90%;
+    margin: auto;
+    height: 70%;
+}
+}
+@media(min-width:601px) and (max-width:1024px){
+    .card-detail-client{
+      flex-direction: column;
+}
+.card-detail{
+    width: 50%;
+    margin: auto;
+    height: 50%;
+}
+}

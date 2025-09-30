@@ -95,12 +95,13 @@ select{
     transform: translate(-50%,-50%);
     background-color: rgba(0, 0, 0, 0.521);
     display: none;
+     z-index: 1000;
 }
 .active{
     display: block;
     transition: all 0.3s ease-in;
 }
-form .fa-xmark{
+.form form .fa-xmark{
     position: absolute;
     top: 15px;
     right: 15px;

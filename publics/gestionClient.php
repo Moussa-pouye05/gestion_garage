@@ -13,7 +13,6 @@
         <script>
        function toggleMenu(){
        let nav = document.getElementById("nav");
-      //  nav.style.width = "80%"
        if(nav.style.width === "80%"){
          nav.style.width = "0%"
        }else{
@@ -55,8 +54,6 @@
         <?php 
            $search = isset($_GET['search']) ? trim($_GET['search']) : "";
             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-
-
             ?>
        
         <div class="bloc-haut">
@@ -117,10 +114,7 @@
           ?>
          </div>
          <?php endif;?>
-            <?php 
-            // $pagination = $client->pagination($page, 5, $search);
-            // $clients = $pagination['data'];
-            ?>
+            
 
          <?php
           $client = new Client($con);
@@ -155,11 +149,11 @@
             <div class=" action">
                 <a class="edit" href="editClient.php?id=<?php echo $client['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a class="delete" onclick="if(confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) { window.location.href = 'postDeleteClient.php?id=<?php echo $client['id']; ?>'; }"><i class="fa-solid fa-trash"></i></a>
-                <a class="details"><i class="fa-solid fa-info-circle"></i></a>
+                <a class="details" href="detailClient.php?id=<?php echo $client['id'];?>"><i class="fa-solid fa-info-circle"></i></a>
             </div>
             <?php endforeach ;?>
         </div>
-        <div>
+        
             
             
 

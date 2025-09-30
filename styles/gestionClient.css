@@ -67,22 +67,19 @@
     border:none;
 }
 .bloc-ligne .action .edit{
-    background-color: rgba(0, 153, 255, 0.493);
-    color: white;
+    color: rgba(0, 153, 255, 0.493);
     padding: 5px 10px;
     border-radius: 10px;
     cursor: pointer;
 }
 .bloc-ligne .action .delete{
-    background-color: rgba(255, 0, 0, 0.493);
-    color: white;
+    color: rgba(255, 0, 0, 0.493);
     padding: 5px 10px;
     border-radius: 10px;
     cursor: pointer;
 }
 .bloc-ligne .action .details{
-    background-color: rgba(0, 255, 0, 0.493);
-    color: white;
+    color: rgba(0, 255, 0, 0.493);
     padding: 5px 10px;
     border-radius: 10px;
     cursor: pointer;

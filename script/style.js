@@ -5,6 +5,7 @@ function toggleForm(){
    
 }
 
+
 function toggleX(){
     let croit = document.getElementById("croit")
     croit.classList.toggle("active");

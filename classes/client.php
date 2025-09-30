@@ -83,45 +83,42 @@ class Client{
         header("Location: ./gestionClient.php?delete=".$_SESSION['deleteClient']);
         exit;
     }
-    public function pagination($page = 1, $limit = 5, $search = "") {
+    function getClientsPagines(int $page = 1, int $limit = 5): array {
+    if ($page < 1) $page = 1;
     $offset = ($page - 1) * $limit;
 
-    // Si recherche
-    if (!empty($search)) {
-        $sqlCount = "SELECT COUNT(*) FROM clients 
-                     WHERE nom LIKE :search OR telephone LIKE :search";
-        $stmtCount = $this->con->prepare($sqlCount);
-        $stmtCount->execute([':search' => "%$search%"]);
-        $total = $stmtCount->fetchColumn();
+    // Nombre total de clients
+    $total = $this->con->query("SELECT COUNT(*) FROM clients")->fetchColumn();
 
-        $sql = "SELECT * FROM clients 
-                WHERE nom LIKE :search OR telephone LIKE :search
-                LIMIT :limit OFFSET :offset";
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindValue(':search', "%$search%", PDO::PARAM_STR);
-        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
-        $stmt->execute();
-    } else {
-        // Pas de recherche → pagination normale
-        $total = $this->con->query("SELECT COUNT(*) FROM clients")->fetchColumn();
-
-        $sql = "SELECT * FROM clients LIMIT :limit OFFSET :offset";
-        $stmt = $this->con->prepare($sql);
-        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
-        $stmt->execute();
-    }
-
-    $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Nombre total de pages
     $totalPages = ceil($total / $limit);
 
+    // Récupérer les clients de la page courante
+    $stmt = $this->con->prepare("SELECT * FROM clients LIMIT :limit OFFSET :offset");
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Retourner toutes les infos utiles
     return [
-        'data' => $clients,
+        'clients' => $clients,
         'total' => $total,
         'totalPages' => $totalPages,
         'currentPage' => $page
     ];
 }
+
+
+public function getEtatVehicule($client_id){
+    
+    $reqCar = $this->con->prepare("SELECT * FROM vehicules JOIN clients ON clients.id=vehicules.client_id WHERE client_id = :client_id");
+    $reqCar->execute([
+        'client_id' => $client_id
+    ]);
+    $fetch = $reqCar->fetchAll(PDO::FETCH_ASSOC);
+    return $fetch;
+}
+
 }
 ?>
