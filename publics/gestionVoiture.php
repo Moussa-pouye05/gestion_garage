@@ -32,12 +32,7 @@
         $nbTermine = $voiture->voitureTerminer();
         $listeVoitures = $voiture->listeVoiture();
         
-        $proprietaire = $_GET['searchVoiture'] ?? null;
-        if (empty($proprietaire)) {
-            $listeVoitures = $voiture->filtrerVoituresParClient(null);
-        } else {
-            $listeVoitures = $voiture->filtrerVoituresParClient($proprietaire);
-        }
+        
         ?>
         <div class="card-voiture">
             <div class="car total-voiture">
@@ -57,14 +52,12 @@
                 <p><span class="text">Voitures terminées</span><br><span class="number"><?php echo $nbTermine?></span></p>
             </div>
         </div>
-        <!-- <form method="GET" action=""> -->
-           <div class="searchVoiture">
-           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" name="searchVoiture" placeholder="Recherche par propriétaire" 
-               value="<?php echo htmlspecialchars($_GET['searchVoiture'] ?? ''); ?>">
-          <!-- <button type="submit">Rechercher</button> -->
+        
+          <div class="searchVoiture">
+             <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" name="searchVoiture" placeholder="Recherche par propriétaire" onkeyup="filtrerProprietaires(this.value)">
           </div>
-        <!-- </form> -->
+        
         <script>
             function toggleAddClient(){
                 let addClient = document.getElementById("formulaire")
@@ -93,34 +86,8 @@
                <div class="textListe">
                 <p>Listes voiture</p>
                </div>
-              <script>
-                    const inputSearch = document.getElementById("searchVoiture");
-                    const resultats = document.getElementById("resultatsVoitures");
-                    let timer = null;
+            
 
-                    function chargerVoitures() {
-                        const formData = new FormData();
-                        formData.append("proprietaire", inputSearch.value);
-
-                        fetch("filtrerVoitures.php", {
-                            method: "POST",
-                            body: formData
-                        })
-                        .then(res => res.text())
-                        .then(data => {
-                            resultats.innerHTML = data;
-                        });
-                    }
-
-                    // ⏳ recherche avec un petit délai (évite d’envoyer trop de requêtes)
-                    inputSearch.addEventListener("input", () => {
-                        clearTimeout(timer);
-                        timer = setTimeout(chargerVoitures, 300);
-                    });
-
-                    // Charger les voitures au démarrage
-                    chargerVoitures();
-                    </script>
 
         <div class="table-voiture">
             <div class="card-head">
@@ -132,14 +99,10 @@
                 <div class="action">Action</div>
                 <div class="status">Status</div>
             </div>
-            <div class="card-body" id="resultatsVoitures"></div>
-            <?php if (!$listeVoitures): ?>
-                  <div class="ligne" style="grid-column: 1 / -1; text-align:center; color:red;">Aucune voiture trouvée</div>;
-                   <?php exit;?>
-                    <?php   endif;  ?>
-            <div class="card-body">
+            
+            <div class="card-body" id="listeVoitures">
                     <?php foreach ($listeVoitures as $value): ?>
-                <div class="ligne client"><?php echo $value['client_nom']?></div>
+                <div class="ligne client"><?php echo $value['nom']?></div>
                 <div class="ligne immatricule"><?php echo htmlspecialchars($value['immatriculation'])?></div>
                 <div class="ligne marque"><?php echo htmlspecialchars($value['marque'])?></div>
                 <div class="ligne model"><?php echo htmlspecialchars($value['modele'])?></div>
@@ -151,13 +114,11 @@
                 </div>
                 <div class="ligne status">status</div>
                 <?php endforeach?>
-                    
             </div>
-            <!-- <div class="card-body" id="resultatsVoitures"></div> -->
         </div>
         <?php
         
-        $clients = $voiture->getClient();
+       // $clients = $voiture->getClient();
         ?>
 
     </section>

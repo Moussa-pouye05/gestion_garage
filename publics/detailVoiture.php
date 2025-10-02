@@ -2,9 +2,10 @@
  require_once __DIR__ . '/../config/mysql.php';
  require_once __DIR__ . '/../publics/dashboardAdmin.php';
  require_once __DIR__ . '/../classes/voiture.php';
+ require_once __DIR__ . '/../classes/reparation.php';
 
  if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
-    echo "Aucun id";
+    // echo "Aucun id";
  }
  $id_reparation = (int)$_GET['id'];
 ?>
@@ -29,11 +30,44 @@
     <?php
       $id = $_GET['id'];
       $voiture = new Voiture($con);
+      $reps = new Reparation($con);
       $details = $voiture->detailClient($id);
+      $reparations = $reps->getReparation($id_reparation);
+      $coutUnique = $reps->getDernierCoutReparation($id_reparation);
+     $totalCout = $reps->getSommeCoutReparation($id_reparation);
     ?>
     <section>
          <p><span class="textClient">Voitures</span><span class="textDetail">/details</span></p>
-         <div class="detailCarHistorique">
+         <?php if(!empty($coutUnique) || !empty($totalCout)):?>
+    <div class="cout">
+        <div class="cout-unique">
+            <div><i class="fa-solid fa-money-check-dollar"></i></div>
+            <div class="textnum">
+                <p><span class="text">Prix du dernier réparation</span></p>
+               <p><span class="nombre"><?php echo !empty($coutUnique['cout']) ? htmlspecialchars($coutUnique['cout']). " F" : "0 F";?></span></p>
+            </div>
+            
+        </div>
+        <div class="cout-unique">
+            <div><i class="fa-solid fa-money-check"></i></div>
+            <div class="textnum">
+                <p><span class="text">Prix total des réparations</span></p>
+                <p><span class="nombre"><?php echo !empty($totalCout['total_coup']) ? htmlspecialchars($totalCout['total_coup']). " F" : "0 F";?></span></p>
+            </div>
+            
+        </div>
+    </div>
+    <?php else:?>
+         <p>Aucune réparation trouvée</p>
+        <?php endif;?>
+        <?php if(isset($_SESSION['successVoitureDetail'])): ?>
+            <div class="alert alert-success m-4">
+            <?php echo htmlspecialchars($_SESSION['successVoitureDetail']); 
+             unset($_SESSION['successVoitureDetail']);  
+            ?>
+            </div>
+            <?php endif;?>
+    <div class="detailCarHistorique">
         <div class="detailVoiture">
             <div class="lienFacture">
                 <a href="gestionVoiture.php"><i class="fa-solid fa-arrow-left"></i>Retour</a>
@@ -83,20 +117,28 @@
             </div>
             <div class="voirClient">
                 <div><a href="detailClient?id=<?php echo $value['id'] ?>">Voir proprietaire</a></div>
-                <div><a href="historiqueReparation.php?id=<?php echo $value['id']?>">Voir facture</a></div>
+                <?php endforeach?> 
             </div>
         </div>
+        <div class="historique">
+            <p>Historique Des reparations</p>
+            <?php if(!empty($reparations)):?>
+            <?php foreach($reparations as $reparation):?>
+                <a href="detailReparation.php?id=<?php echo $id?>">
+                <span class="imm"><?php echo $reparation['immatriculation']?></span><span class="date_rep"><?php echo $reparation['date_reparation']?></span>
+                </a>
+            <?php endforeach;?>
+
+            <?php else: ?>
+            <p style="color:red">Historique vide</p>
+            <?php endif; ?>
+        </div>
+     </div>  
+
+
         
-        <?php endforeach?>
-        </div>  
         <?php $id_voiture = $_GET['id']?>
-        <?php if(isset($_SESSION['successVoitureDetail'])): ?>
-            <div class="alert alert-success m-4">
-            <?php echo htmlspecialchars($_SESSION['successVoitureDetail']); 
-             unset($_SESSION['successVoitureDetail']);  
-            ?>
-            </div>
-            <?php endif;?>
+        
         <div class="factureForm" id="facture">
             <form action="postAddReparation.php" method="POST">
                 <a href="" id="croit" onclick="toggleX()"><i class="fa-solid fa-xmark"></i></a>

@@ -75,22 +75,29 @@
    $fetch = fetchAll(PDO::FETCH_ASSOC);
    return $fetch;
   }
-public function filtrerVoituresParClient($proprietaire = null) {
-    $sql = "SELECT v.*, c.nom AS client_nom 
-            FROM vehicules v
-            JOIN clients c ON v.client_id = c.id";
+public function filtrerVoituresParClientId($clientId = null) {
+        $where = "";
+        $params = [];
 
-    if ($proprietaire) {
-        $sql .= " WHERE c.nom LIKE :proprietaire";
-        $req = $this->con->prepare($sql);
-        $req->execute(['proprietaire' => "%" . $proprietaire . "%"]);
-    } else {
-        $req = $this->con->prepare($sql);
-        $req->execute();
+        if ($clientId !== null && $clientId !== '') {
+            $where = "WHERE v.client_id = :client_id";
+            $params[':client_id'] = (int)$clientId;
+        }
+
+        $sql = "SELECT v.id AS id, v.immatriculation, v.marque, v.modele, v.annee, v.status,
+                       c.id AS client_id, c.nom AS client_nom
+                FROM vehicules v
+                JOIN clients c ON v.client_id = c.id
+                $where
+                ORDER BY v.id DESC
+                LIMIT 1000"; // ajuster si nécessaire
+
+        $stmt = $this->con->prepare($sql);
+        $stmt->execute($params);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rows ?: [];
     }
 
-    return $req->fetchAll(PDO::FETCH_ASSOC);
-}
 
 public function detailClient($id){
    $stmt = $this->con->prepare("SELECT c.id, c.nom, v.immatriculation,v.marque,v.modele,v.annee,v.status FROM vehicules v JOIN clients c ON v.client_id=c.id WHERE v.id = :id");
@@ -108,7 +115,7 @@ public function addReparation($voiture_id,$date,$description,$cout){
    ]);
    session_start();
    $_SESSION['successVoitureDetail'] = "Facturé avec succes";
-   // header("Location: ./../publics/detailVoiture.php?success=".$_SESSION['successVoitureDetail']);
+   header("Location: ./../publics/detailVoiture.php?id=".$voiture_id.$_SESSION['successVoitureDetail']);
 }
 
 }

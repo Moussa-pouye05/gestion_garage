@@ -34,3 +34,6 @@ Authentification
 Admin (gère tout)
 
 Employé (peut seulement ajouter/modifier des réparations et consulter les clients)
+<a href="facture.php?id_reparation=<?php echo $value['id'] ?>" target="_blank" class="btn-facture">
+                Télécharger Facture
+             </a>

@@ -98,7 +98,7 @@
 .arrow a{
     /* margin: 10px 0 0 10px; */
     text-decoration: none;
-    color: rgb(55, 0, 255);
+    color: blue;
 }
 .arrow{
     display: flex;

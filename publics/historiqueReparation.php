@@ -34,34 +34,13 @@
     $coutUnique = $reparation->getDernierCoutReparation($id_rep);
     $totalCout = $reparation->getSommeCoutReparation($id_rep);
     ?>
-    <?php if(!empty($coutUnique) || !empty($totalCout)):?>
-    <div class="cout">
-        <div class="cout-unique">
-            <div><i class="fa-solid fa-money-check-dollar"></i></div>
-            <div class="textnum">
-                <p><span class="text">Prix du dernier réparation</span></p>
-               <p><span class="nombre"><?php echo !empty($coutUnique['cout']) ? htmlspecialchars($coutUnique['cout']). "F" : "0 F";?></span></p>
-            </div>
-            
-        </div>
-        <div class="cout-unique">
-            <div><i class="fa-solid fa-money-check"></i></div>
-            <div class="textnum">
-                <p><span class="text">Prix total des réparations</span></p>
-                <p><span class="nombre"><?php echo !empty($totalCout['total_coup']) ? htmlspecialchars($totalCout['total_coup']). "F" : "0 F";?></span></p>
-            </div>
-            
-        </div>
-    </div>
-    <?php else:?>
-         <p>Aucune réparation trouvée</p>
-        <?php endif;?>
+    
     <div class="big-historique">
          <div class="historique">
         <p>Historique des réparations</p>
         <?php if(!empty($reparations)):?>
           <?php foreach($reparations as $reparation):?>
-        <a href="">
+        <a href="detailReparation.php?id=<?php echo $id_rep?>">
           <span class="imm"><?php echo $reparation['immatriculation']?></span><span class="date_rep"><?php echo $reparation['date_reparation']?></span>
         </a>
     <?php endforeach;?>

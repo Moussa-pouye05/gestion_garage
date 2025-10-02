@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="./images/logo.jpg">
+    <link rel="icon" type="image/x-icon" href="../images/logo.jpg">
     
      <link rel="stylesheet" href="./../styles/dashboardAdmin.css">
      <link rel="stylesheet" href="./../styles/gestionEmplye.css">
@@ -29,7 +29,7 @@
         <span><a href="gestionEmploye.php"><i class="fa-solid fa-user-secret"></i>Gestion employes</a></span>
         <span><a href="gestionClient.php"><i class="fa-solid fa-users"></i>Gestion clients</a></span>
         <span><a href="gestionVoiture.php"><i class="fa-solid fa-car"></i>Gestion voitures</a></span>
-        <span><a href=""><i class="fa-solid fa-car-burst"></i>Gestion reparations</a></span>
+        
     </div>
     <div class="deconnect">
       <a href="deconnexion.php">Deconnexion</a>
