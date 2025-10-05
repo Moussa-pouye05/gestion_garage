@@ -269,6 +269,9 @@
         flex-wrap: wrap;
         
     }
+    .factureForm form{
+        width: 90%;
+    }
     .car{
      width: 47%;
      height: 15vh;
