@@ -46,7 +46,7 @@
           if($_SESSION['utilisateur']['role'] === 'admin'){
             header('Location: ./../publics/gestionEmploye.php');
           }else if($_SESSION['utilisateur']['role'] === 'employe'){
-            header('Location: ./../publics/dashboardEmploye.php');
+            header('Location: ./../publics/gestionClientEmploye.php');
           }else{
              $_SESSION['message'] = "Role invalide";
              header("Location: ../index.php?message=".$_SESSION['message']);

@@ -1,6 +1,6 @@
 <?php
  require_once __DIR__ . '/../config/mysql.php';
- require_once __DIR__ . '/../publics/dashboardAdmin.php';
+ require_once __DIR__ . '/../publics/dashboardEmploye.php';
  require_once __DIR__ . '/../classes/voiture.php';
  require_once __DIR__ . '/../classes/reparation.php';
 
@@ -33,6 +33,7 @@
       $reps = new Reparation($con);
       $details = $voiture->detailClient($id);
       $reparations = $reps->getReparation($id_reparation);
+      $repUnique = $reps->reparation($id_reparation);
       $coutUnique = $reps->getDernierCoutReparation($id_reparation);
      $totalCout = $reps->getSommeCoutReparation($id_reparation);
     ?>
@@ -70,7 +71,7 @@
     <div class="detailCarHistorique">
         <div class="detailVoiture">
             <div class="lienFacture">
-                <a href="gestionVoiture.php"><i class="fa-solid fa-arrow-left"></i>Retour</a>
+                <a href="gestionVoitureEmploye.php"><i class="fa-solid fa-arrow-left"></i>Retour</a>
                 <button onclick="toggleAddRep()">Facturer</button>
                 <script>
                     function toggleFacture(){
@@ -99,6 +100,7 @@
             </div>
             <div class="hrvoiture"></div>
             <div class="infoDetailVoiture">
+                
                 <div class="voiture detailPro"><span class="voiture">Proprietaire:</span><?php echo htmlspecialchars($value['nom'])?></div>
                 <div class="voiture detailMarque"><span class="voiture">Marque:</span><?php echo htmlspecialchars($value['marque'])?></div>
                 <div class="voiture detailModel"><span class="voiture">Modele:</span><?php echo htmlspecialchars($value['modele'])?></div>
@@ -115,7 +117,7 @@
                 
             </div>
             <div class="voirClient">
-                <div><a href="detailClient?id=<?php echo $value['id'] ?>">Voir proprietaire</a></div>
+                <div><a href="detailClientEmploye.php?id=<?php echo $value['id'] ?>">Voir proprietaire</a></div>
                 <?php endforeach?> 
             </div>
         </div>
@@ -123,9 +125,12 @@
             <p>Historique Des reparations</p>
             <?php if(!empty($reparations)):?>
             <?php foreach($reparations as $reparation):?>
-                <a href="detailReparation.php?id=<?php echo $id?>">
+
+                <a href="detailReparationEmploye.php?id=<?php echo $id?>">
+                    
                 <span class="imm"><?php echo $reparation['immatriculation']?></span><span class="date_rep"><?php echo $reparation['date_reparation']?></span>
                 </a>
+                
             <?php endforeach;?>
 
             <?php else: ?>
@@ -133,6 +138,9 @@
             <?php endif; ?>
         </div>
      </div>  
+
+
+        
         <?php $id_voiture = $_GET['id']?>
         <script>
             function toggleAddRep(){
@@ -141,7 +149,7 @@
             }
         </script>
         <div class="factureForm" id="facture">
-            <form action="postAddReparation.php" method="POST">
+            <form action="postAddRepEm.php" method="POST">
                 <a href="" id="croit" onclick="toggleX()"><i class="fa-solid fa-xmark"></i></a>
                 <div class="group">
                     <input type="hidden" name="vehicule_id" value=<?php echo htmlspecialchars($id_voiture)?>>

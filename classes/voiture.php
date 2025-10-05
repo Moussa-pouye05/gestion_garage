@@ -64,7 +64,7 @@
    }
  }
   public function listeVoiture(){
-   $stmt  = $this->con->prepare("SELECT v.id, c.nom,v.immatriculation,v.marque,v.modele,v.annee from vehicules v JOIN clients c ON v.client_id=c.id ");
+   $stmt  = $this->con->prepare("SELECT v.id, c.nom,v.immatriculation,v.marque,v.modele,v.annee,v.status from vehicules v JOIN clients c ON v.client_id=c.id ");
    $stmt->execute();
    $fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
    return $fetch;
@@ -117,6 +117,59 @@ public function addReparation($voiture_id,$date,$description,$cout){
    $_SESSION['successVoitureDetail'] = "Facturé avec succes";
    header("Location: ./../publics/detailVoiture.php?id=".$voiture_id.$_SESSION['successVoitureDetail']);
 }
+ public function updateStatus($id, $status){
+    $stmt = $this->con->prepare("UPDATE vehicules SET status = :status WHERE id = :id");
+    $stmt->bindParam(':status', $status);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
 
+    header("Location: ./../publics/gestionVoitureEmploye.php");
+  
+ }
+ public function getReparationById($id){
+    $stmt = $this->con->prepare("SELECT * FROM reparations WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+    $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $fetch;
+}
+ public function updateReparation($id,$description,$cout){
+    $stmt = $this->con->prepare("UPDATE reparations SET description = :description,cout = COALESCE(:cout, cout) WHERE id = :id");
+    $stmt->execute(['id' => $id, 'description' =>$description, 'cout' => $cout]);
+    $stmt->fetch(PDO::FETCH_ASSOC);
+    session_start();
+    $_SESSION['updateRep'] = "Mise a jous avec succes";
+    
+    header("Location: ./../publics/gestionVoiture.php");
+}
+public function getVoitureById($id){
+    $stmt = $this->con->prepare("SELECT * FROM vehicules WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+    $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $fetch;
+}
+public function updateVoiture($id,$immatriculation,$marque,$modele,$annee){
+    $stmt = $this->con->prepare("UPDATE vehicules SET immatriculation = :immatriculation, marque = :marque, modele = :modele, annee = :annee WHERE id = :id");
+    $stmt->execute([
+      'id' => $id,
+      'immatriculation' => $immatriculation,
+      'marque' =>$marque,
+      'modele' => $modele,
+      'annee' => $annee
+     ]);
+    $stmt->fetch(PDO::FETCH_ASSOC);
+    session_start();
+    $_SESSION['updateV'] = "Mise a jous avec succes";
+    
+    header("Location: ./../publics/gestionVoiture.php");
+}
+public function deleteVoiture($id){
+   $stmt = $this->con->prepare("DELETE FROM vehicules WHERE id = :id");
+   $stmt->execute(['id' => $id]);
+   
+   session_start();
+    $_SESSION['deleteV'] = "Voiture supprimée avec succes";
+    
+    header("Location: ./../publics/gestionVoiture.php");
+}
 }
 ?>

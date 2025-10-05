@@ -40,7 +40,7 @@ section h2{
 section{
     overflow:auto;
 }
-form{
+.form form{
     width: 30%;
     border:1px solid rgba(0,0,0,0.2);
     background-color: white;

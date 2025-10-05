@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/mysql.php';
  require_once __DIR__ . '/../classes/client.php';
  require_once __DIR__ . '/../classes/voiture.php';
- require_once __DIR__ .'/../publics/dashboardAdmin.php';
+ require_once __DIR__ .'/../publics/dashboardEmploye.php';
 
  if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
     echo "Client no trouve";
@@ -36,8 +36,8 @@ $statuse = $detailClients->getEtatVehicule($idclient);
         <div class="card-detail-client">
             <div class="card-detail">
               <div class="arrow">
-                <a href="gestionClient.php"><i class="fa-solid fa-arrow-left"></i>Retour</a>
-                <a  onclick="toggleAddClient()">Ajouter voiture</a>
+                <a href="gestionClientEmploye.php"><i class="fa-solid fa-arrow-left"></i>Retour</a>
+                <!-- <a  onclick="toggleAddClient()">Ajouter voiture</a> -->
                 <script>
                   function toggleAddClient(){
                    let addClient = document.getElementById("formulaire")
@@ -58,8 +58,8 @@ $statuse = $detailClients->getEtatVehicule($idclient);
                     <?php endforeach;?>
                 </div>
               <div class="bouton-contact">
-                <button>Contacter</button>
-                <a href="gestionVoiture.php">Liste voiture</a>
+                <!-- <button>Contacter</button> -->
+                <a href="gestionVoitureEmploye.php">Liste voiture</a>
               </div>
             </div>
          <?php
@@ -82,9 +82,8 @@ $statuse = $detailClients->getEtatVehicule($idclient);
                     <div class="row telephone"><?php echo $client['telephone']?></div>
                     <div class="row adresse"><?php echo $client['adresse'] ?></div>
                     <div class=" action">
-                        <a class="edit" href="editClient.php?id=<?php echo $client['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a class="delete" onclick="if(confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) { window.location.href = 'postDeleteClient.php?id=<?php echo $client['id']; ?>'; }"><i class="fa-solid fa-trash"></i></a>
-                        <a class="details" href="detailClient.php?id=<?php echo $client['id'];?>"><i class="fa-solid fa-info-circle"></i></a>
+                        
+                        <a class="details" href="detailClientEmploye.php?id=<?php echo $client['id'];?>"><i class="fa-solid fa-info-circle"> Details</i></a>
                     </div>
                     <?php endforeach ;?>
                 </div>

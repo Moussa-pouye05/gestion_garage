@@ -219,7 +219,7 @@ h4{
     background-color: rgba(0,0,0,0.19);
 }
 .rep{
-    padding: 10px 15px;
+    padding: 5px;
     font-size: 18px;
 }
 .desc{
@@ -228,7 +228,7 @@ h4{
     padding-right: 10px;
 }
 .detail_rep a{
-    padding: 10px;
+    padding: 5px;
     text-decoration: none;
 }
 .btn-facture {

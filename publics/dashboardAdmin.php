@@ -29,11 +29,62 @@
         <span><a href="gestionEmploye.php"><i class="fa-solid fa-user-secret"></i>Gestion employes</a></span>
         <span><a href="gestionClient.php"><i class="fa-solid fa-users"></i>Gestion clients</a></span>
         <span><a href="gestionVoiture.php"><i class="fa-solid fa-car"></i>Gestion voitures</a></span>
-        
+        <div class="notification-bell">
+          <i class="fa-solid fa-bell"></i>
+          <span id="notif-count">0</span>
+        </div>
     </div>
     <div class="deconnect">
       <a href="deconnexion.php">Deconnexion</a>
     </div>
 </nav>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+setInterval(function() {
+    fetch('checkNotifications.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.new) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Nouvelle réparation',
+                    text: data.message,
+                    timer: 4000,
+                    showConfirmButton: false
+                });
+            }
+        })
+        .catch(error => console.error('Erreur AJAX:', error));
+}, 5000); // Vérifie toutes les 5 secondes
+</script>
+<script>
+function checkNotifCount() {
+    fetch('countNotifications.php')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("notif-count").innerText = data.count;
+        });
+}
+
+// Vérifie toutes les 5 secondes
+setInterval(checkNotifCount, 8000);
+
+// Vérifie au chargement
+checkNotifCount();
+</script>
+<script>
+document.querySelector('.notification-bell').addEventListener('click', () => {
+    fetch('listNotifications.php')
+        .then(res => res.text())
+        .then(html => {
+            Swal.fire({
+                title: "Notifications",
+                html: html,
+                width: 400
+            });
+        });
+});
+</script>
+
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-  require_once __DIR__ . '/dashboardAdmin.php';
+  require_once __DIR__ . '/dashboardEmploye.php';
   require_once __DIR__ . '/../classes/client.php';
   require_once __DIR__ . '/postAddClient.php';
 ?>
@@ -57,9 +57,9 @@
                <i class="fa-solid fa-magnifying-glass"></i> <input type="text" name="search" value="<?= htmlspecialchars($search)?>" id="input" placeholder="Rechercher...">
             </div>
             
-            <div class="addClient">
+            <!-- <div class="addClient">
                 <button onclick="toggleForm()"><i class="fa-solid fa-plus"></i>Ajouter un client</button>
-            </div>
+            </div> -->
         </div>
           
          <p id="noResults" style="display:none; color:red; font-weight:bold; margin-left:30px;">
@@ -131,6 +131,7 @@
             ?>
             </div>
             <?php endif;?>
+            
         <div class="bloc-table" id="client">
             <div class="nom">Nom complet</div>
             <div class="telephone">Téléphone</div>
@@ -143,69 +144,11 @@
             <div class="row telephone"><?php echo $client['telephone']?></div>
             <div class="row adresse"><?php echo $client['adresse'] ?></div>
             <div class=" action">
-                <a class="edit" href="editClient.php?id=<?php echo $client['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                <a class="delete" onclick="if(confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) { window.location.href = 'postDeleteClient.php?id=<?php echo $client['id']; ?>'; }"><i class="fa-solid fa-trash"></i></a>
-                <a class="details" href="detailClient.php?id=<?php echo $client['id'];?>"><i class="fa-solid fa-info-circle"></i></a>
+                
+                <a class="details" href="detailClientEmploye.php?id=<?php echo $client['id'];?>"><i class="fa-solid fa-info-circle"> Details</i></a>
             </div>
             <?php endforeach ;?>
         </div>
-        
-            
-            
-
-    <div class="form" id="forme">
-        <form action="postAddClient.php" method="POST">
-         <a href="" id="croit" onclick="toggleX()"><i class="fa-solid fa-xmark"></i></a>
-         <h2>Ajout employe</h2>
-            <?php if(isset($_SESSION['already'])): ?>
-          <div class="alert alert-success m-4" >
-          <?php echo htmlspecialchars($_SESSION['already']); ?>
-          <script>
-                  document.addEventListener('DOMContentLoaded',function(){
-                     toggleForm();
-                  })
-                 </script>
-         <?php  unset($_SESSION['already']);
-          ?>
-         </div>
-         <?php endif;?>
-            <?php if(isset($_SESSION['messageError'])):   ?>
-               
-                <?php   echo '<p style="color:red;text-align:center;">' .$_SESSION['messageError']. '</p>'; ?> 
-                 <script>
-                  document.addEventListener('DOMContentLoaded',function(){
-                     toggleX();
-                  })
-                 </script>
-                      <?php  unset($_SESSION['messageError']);
-                 ?>
-            
-               <?php endif; ?>
-            <div class="inputBox">
-                <div>Nom complet</div>
-                <div class="input">
-                    <input type="text" name="nom" required="required" placeholder="Votre nom">
-                    <i class="fa-solid fa-users"></i>
-                </div>
-            </div>
-            <div class="inputBox">
-                <div>Telephone</div>
-                <div class="input">
-                    <input type="text" name="telephone" required="required" placeholder="Telephone">
-                    <i class="fa-solid fa-phone"></i>
-                </div>
-            </div>
-            <div class="inputBox">
-                <div>Adresse</div>
-                <div class="input">
-                    <input type="text" name="adresse" required="required" placeholder="Adresse">
-                    <i class="fa-solid fa-map-marker-alt"></i>
-                </div>
-            </div>
-
-            <button class="btn" style="background-color: rgba(0, 153, 255, 0.493);">Ajouter</button>
-        </form>
-    </div>
     </section>
     <?php require_once __DIR__ . "/../includes/footer.php"?>
 </main>

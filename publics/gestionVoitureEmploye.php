@@ -1,6 +1,6 @@
 <?php
  require __DIR__ . '/../config/mysql.php';
- require_once __DIR__ . '/dashboardAdmin.php';
+ require_once __DIR__ . '/dashboardEmploye.php';
  require_once __DIR__ . '/../classes/voiture.php';
  require_once __DIR__ . '/../classes/client.php';
 
@@ -83,39 +83,17 @@
                  ?>
             
                <?php endif; ?>
-               <div class="textListe">
-                <p>Listes voiture</p>
-               </div>
-            
-               <?php if(isset($_SESSION['updateRep'])): ?>
+                <?php if(isset($_SESSION['updateRep'])): ?>
             <div class="alert alert-success m-4">
             <?php echo htmlspecialchars($_SESSION['updateRep']); 
              unset($_SESSION['updateRep']);  
             ?>
             </div>
             <?php endif;?>
-               <?php if(isset($_SESSION['deleteRep'])): ?>
-            <div class="alert alert-success m-4">
-            <?php echo htmlspecialchars($_SESSION['deleteRep']); 
-             unset($_SESSION['deleteRep']);  
-            ?>
-            </div>
-            <?php endif;?>
-               <?php if(isset($_SESSION['updateV'])): ?>
-            <div class="alert alert-success m-4">
-            <?php echo htmlspecialchars($_SESSION['updateV']); 
-             unset($_SESSION['updateV']);  
-            ?>
-            </div>
-            <?php endif;?>
-               <?php if(isset($_SESSION['deleteV'])): ?>
-            <div class="alert alert-success m-4">
-            <?php echo htmlspecialchars($_SESSION['deleteV']); 
-             unset($_SESSION['deleteV']);  
-            ?>
-            </div>
-            <?php endif;?>
-
+    
+               <div class="textListe">
+                <p>Listes voiture</p>
+               </div>
         <div class="table-voiture">
             <div class="card-head">
                 <div class="client">Propriétaire</div>
@@ -135,25 +113,47 @@
                 <div class="ligne model"><?php echo htmlspecialchars($value['modele'])?></div>
                 <div class="ligne annee"><?php echo htmlspecialchars($value['annee'])?></div>
                 <div class="ligne action">
-                    <a class="edit" href="editVoiture.php?id=<?php echo $value['id']?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="delete" onclick="if(confirm('Êtes-vous sûr de vouloir supprimer cette voiture ?')) { window.location.href = 'postDeleteVoiture.php?id=<?php echo $value['id'] ?>'; }"><i class="fa-solid fa-trash"></i></a>
-                    <a class="details" href="detailVoiture.php?id=<?php echo $value['id'];?>"><i class="fa-solid fa-info-circle"></i></a>
+                    
+                    <a class="details" href="detailVoitureEmploye.php?id=<?php echo $value['id'];?>"><i class="fa-solid fa-info-circle"></i> Details</a>
                 </div>
                 <div class="ligne status">
+                    <form method="post" action="updateStatus.php">
+                      <input type="hidden" name="id" value="<?php echo $value['id']; ?>">
+                      <div class="status-container">
+                        <span class="badge 
+                            <?php 
+                                if ($value['status'] === 'en panne') echo 'badge-panne';
+                                elseif ($value['status'] === 'en reparation') echo 'badge-reparation';
+                                elseif ($value['status'] === 'termine') echo 'badge-termine';
+                            ?>">
+                            <?php echo htmlspecialchars($value['status']); ?>
+                        </span>
 
-                   <span class="
-                    <?php if ($value['status'] === "en panne"): ?>
-                        status-panne
-                    <?php elseif ($value['status'] === "en reparation"): ?>
-                        status-reparation
-                    <?php elseif ($value['status'] === "termine"): ?>
-                        status-termine
-                    <?php endif; ?>
-                   "> <?php echo htmlspecialchars($value['status']);?></span> 
-                     
+                        <select name="status" class="status-select" onchange="changerStatus(<?php echo $value['id']; ?>, this.value)">
+                            <option value="en panne" <?php if($value['status']=="en panne") echo "selected"; ?>>En panne</option>
+                            <option value="en reparation" <?php if($value['status']=="en reparation") echo "selected"; ?>>En réparation</option>
+                            <option value="termine" <?php if($value['status']=="termine") echo "selected"; ?>>Terminé</option>
+                        </select>
+                    </div>
+                    </form>
                 </div>
                 <?php endforeach?>
-            </div>
+                <script>
+                    function changerStatus(id, nouveauStatus) {
+                        // Appel AJAX vers un fichier PHP qui met à jour le status
+                        fetch('updateStatus.php', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                            body: 'id=' + id + '&status=' + nouveauStatus
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            console.log("Status mis à jour:", data);
+                            location.reload(); // recharge la page pour voir le badge mis à jour
+                        });
+                    }
+           </script>
+         </div>
         </div>
         <?php
         

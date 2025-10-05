@@ -1,6 +1,6 @@
 <?php
  require_once __DIR__ . '/../config/mysql.php';
- require_once __DIR__ . '/../publics/dashboardAdmin.php';
+ require_once __DIR__ . '/../publics/dashboardEmploye.php';
  require_once __DIR__ . '/../classes/reparation.php';
 //  require_once __DIR__ . '/facture.php';
 ?>
@@ -31,19 +31,15 @@
          $reparations = $reparation->getReparation($id_rep);
         
         ?>
+         
         <?php foreach($reparations as $value):?>
           <div class="big_detail_rep">
              <div class="detail_rep">
-              <a href="detailVoiture?id=<?php echo $id_rep?>"><i class="fa-solid fa-arrow-left"></i>Retour</a>
+              <a href="detailVoitureEmploye?id=<?php echo $id_rep?>"><i class="fa-solid fa-arrow-left"></i>Retour</a>
               <div class="rep"><span class="desc">Date:</span><?php echo $value['date_reparation']?></div>
               <div class="rep"><span class="desc">Description:</span><?php echo $value['description']?></div>
               <div class="rep"><span class="desc">Cout:</span><?php echo $value['cout']?> F</div>
-              <a href="facture.php?id=<?php echo $value['reparation_id']; ?>" target="_blank">
-              <button class="btn-facture">Générer facture</button>
-              </a>
-              <a class="btn-edit" href="editReparationAd.php?id=<?php echo $value['reparation_id']?>"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a class="btn-delete" onclick="if(confirm('Êtes-vous sûr de vouloir supprimer cette voiture ?')){ window.location.href='postDeleteReparation.php?id=<?php echo $value['reparation_id'];?>';}" > <i class="fa-solid fa-trash"></i></a>
-               
+              <a href="editReparation.php?id=<?php echo $value['reparation_id']?>" class="btn-edit"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
              </div>
              <div class="hrRep"></div>
           </div>

@@ -85,6 +85,10 @@
     padding: 5px 10px;
     border-radius: 10px;
     cursor: pointer;
+    text-decoration: none;
+}
+.card-body .action .details a{
+    text-decoration: none;
 }
 .addVehicule button{
    position: relative;
@@ -161,6 +165,104 @@
     text-align: center;
     font-size: 25px;
     
+}
+.status-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* espace entre le badge et le select */
+    margin: 5px 0;
+}
+
+.status-select {
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    height: 28px;
+    cursor: pointer;
+}
+
+/* Styles des badges */
+.badge {
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.badge-panne {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.badge-reparation {
+    background-color: #f1c40f;
+    color: #000;
+}
+
+.badge-termine {
+    background-color: #2ecc71;
+    color: #fff;
+}
+.status-panne {
+    background-color: #ff4d4d; /* rouge */
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+.status-reparation {
+    background-color: #f1c40f; /* jaune */
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+.status-termine {
+    background-color: #2ecc71; /* vert */
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+.factureForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.521);
+    display: none;
+     z-index: 1000;
+}
+.factureForm form{
+    width: 30%;
+    height: 60vh;
+    border:1px solid rgba(0,0,0,0.2);
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+
+}
+.activeRep{
+    display: block;
 }
 @media(max-width:600px){
     .card-voiture{

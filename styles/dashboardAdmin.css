@@ -97,6 +97,25 @@ section{
 .actife{
     display:block;
 }
+.notification-bell {
+    position: relative;
+    display: inline-block;
+    margin-left: 14px;
+    cursor: pointer;
+    font-size: 22px;
+    color: white;
+}
+
+.notification-bell #notif-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
 @media(max-width:1024px){
     nav{
         display: block;
@@ -123,18 +142,4 @@ section{
     }
     
 }
-@media(max-width:600px){
- main{
-    /* width:100%; */
- }
- nav{
-        /* display: block;
-        position: fixed;
-        overflow: hidden;
-        top:0;
-        left:0;
-        width:0;
-        transition: all 0.5s ease-in; */
-        
-    }
-}
+

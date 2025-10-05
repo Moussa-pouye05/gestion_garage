@@ -46,7 +46,12 @@ public function __construct($con){
    $fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
    return $fetch === false ? null : $fetch;
 }
-
+public function reparation($id){
+  $stmt = $this->con->prepare("SELECT * FROM reparations WHERE id = :id");
+  $stmt->execute(['id' => $id]);
+  $fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $fetch;
+}
 
 public function getDernierCoutReparation($vehicule_id){
    $stmt = $this->con->prepare("SELECT cout FROM reparations WHERE vehicule_id = :vehicule_id ORDER BY date_reparation DESC LIMIT 1");
@@ -103,6 +108,42 @@ public function getSommeCoutReparation($vehicule_id){
     ob_end_clean();
     $pdf->Output();
 }
-
+public function addReparations($voiture_id,$date,$description,$cout){
+   $stmt = $this->con->prepare("INSERT INTO reparations (vehicule_id,date_reparation,description,cout) VALUES (:vehicule_id,:date_reparation,:description,:cout)");
+   $stmt->execute([
+      'vehicule_id' => $voiture_id,
+      'date_reparation' => $date,
+      'description' => $description,
+      'cout' => $cout
+   ]);
+    $msg = "Nouvelle réparation ajoutée pour le véhicule ID " . $vehicule_id;
+    $notif = $this->con->prepare("INSERT INTO notifications (message) VALUES (:message)");
+    $notif->execute(['message' => $msg]);
+   session_start();
+   $_SESSION['successVoitureDetail'] = "Facturé avec succes";
+   header("Location: ./../publics/detailVoitureEmploye.php?id=".$voiture_id.$_SESSION['successVoitureDetail']);
+}
+public function getReparationById($id){
+    $stmt = $this->con->prepare("SELECT * FROM reparations WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+    $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $fetch;
+}
+public function updateReparation($id,$description,$cout){
+    $stmt = $this->con->prepare("UPDATE reparations SET description = :description,cout = COALESCE(:cout, cout) WHERE id = :id");
+    $stmt->execute(['id' => $id, 'description' =>$description, 'cout' => $cout]);
+    $stmt->fetch(PDO::FETCH_ASSOC);
+    session_start();
+    $_SESSION['updateRep'] = "Mise a jous avec succes";
+    
+    header("Location: ./../publics/gestionVoitureEmploye.php");
+}
+public function deleteReparation($id){
+    $stmt = $this->con->prepare("DELETE FROM reparations WHERE id = :id ");
+    $stmt->execute(['id' => $id]);
+    session_start();
+    $_SESSION['deleteRep'] = "Réparation supprimée avec succes";
+    header("Location: ./../publics/gestionVoiture.php");
+}
 }
 ?>
