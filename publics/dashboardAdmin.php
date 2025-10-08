@@ -24,7 +24,7 @@
 </head>
 <body>
 <nav id="nav">
-    <span><h2 class="dashboard">Dashboard</h2><?php echo $_SESSION['utilisateur']['nom'];?></span>
+    <span><h2 class="dashboard">Dashboard<span class="role">/admin</span></h2><strong class="nomUser"><?php echo $_SESSION['utilisateur']['nom'];?></strong></span>
     <div class="nav-left">
         <span><a href="gestionEmploye.php"><i class="fa-solid fa-user-secret"></i>Gestion employes</a></span>
         <span><a href="gestionClient.php"><i class="fa-solid fa-users"></i>Gestion clients</a></span>

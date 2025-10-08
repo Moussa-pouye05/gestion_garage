@@ -2,6 +2,7 @@
     padding:0;
     margin:0;
     box-sizing:border-box;
+    text-decoration: none;
 }
 body{
     display:flex;
@@ -43,6 +44,14 @@ section{
 .dashboard{
     letter-spacing:3px;
     text-transform:uppercase;
+    margin-left: 10px;
+}
+.nomUser{
+margin-left: 10px;
+}
+.role{
+    font-size: 12px;
+    text-transform: none;
 }
 .nav-left span{
     /* display:block; */
@@ -73,13 +82,14 @@ section{
   text-decoration:none;
   padding:10px;
   background-color:blue;
-  color:black;
+  color:white;
   border-radius:10px;
   display:block;
 }
 .deconnect{
     width:60%;
     margin-top:40px;
+    margin-left: 10px;
     transition:transform  0.3s ease-in;
   &:hover{
     transform:scale(1.1);
